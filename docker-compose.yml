@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: flaskpassword
+      POSTGRES_USER: flaskuser
+      POSTGRES_DB: flaskdb
+    networks:
+      - wp_network
+
+  flaskapp:
+    image: flaskapp
+    ports:
+      - "5000:5000"
+    networks:
+      - wp_network
+
+networks:
+  wp_network:
